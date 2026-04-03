@@ -1,1 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Goldman Sachs handed AI agents the keys to its trade accounting desk. What happens when autonomous systems gain transactional authority in finance?"/>
+<meta property="og:title" content="The Agentic Takeover: What Happens When AI Settles Your Trades?"/>
+<meta property="og:description" content="Goldman's autonomous agents, FINRA's new rules, and the accountability gap no one is talking about."/>
+<meta property="og:type" content="article"/>
+<title>The Signal · Issue 41 · April 6, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:     #0c0c0e;
+  --page:    #f2ede4;
+  --warm:    #e8e0d0;
+  --rule:    #ccc4b2;
+  --mid:     #4c4640;
+  --dim:     #8a8078;
+  --red:     #b8241c;
+  --red-lt:  #d9392f;
+  --gold:    #9a6c1a;
+  --gold-lt: #c49040;
+  --night:   #0e0e12;
+  --night2:  #16161c;
+  --mono-tx: #b8c4cc;
+  --mono-cm: #4a5060;
+  --green:   #2e7d52;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--page);
+  color:var(--ink);
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:'';
+  position:fixed;inset:0;pointer-events:none;z-index:900;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.032'/%3E%3C/svg%3E");
+  opacity:.55;
+}
+.mast{
+  background:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.mast::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    0deg,transparent,transparent 47px,
+    rgba(255,255,255,.025) 47px,rgba(255,255,255,.025) 48px
+  );
+}
+.mast-wrap{
+  max-width:960px;margin:0 auto;
+  padding:24px 40px 0;
+  position:relative;z-index:1;
+}
+.mast-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid #222228;
+}
+.mast-bar-left{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#4a4850;font-weight:500;
+}
+.mast-pill{
+  background:var(--red);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.2em;font-weight:600;
+  padding:4px 12px;
+}
+.mast-bar-right{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:#4a4850;font-weight:500;
+  text-align:right;
+}
+.wordmark{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(74px,13vw,136px);
+  font-weight:700;
+  color:#f2ede4;
+  letter-spacing:-.035em;
+  line-height:.88;
+  text-align:center;
+  padding:22px 0 8px;
+}
+.wordmark-sub{
+  text-align:center;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.32em;
+  text-transform:uppercase;color:#3a3840;
+  padding-bottom:0;
+}
+.ticker-strip{
+  background:var(--red);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:10px 0;
+  position:relative;
+}
+.ticker-inner{
+  display:inline-block;
+  animation:ticker 38s linear infinite;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.18em;font-weight:500;
+  color:#fff;text-transform:uppercase;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-sep{color:rgba(255,255,255,.4);margin:0 22px;}
+.issue-header{
+  background:var(--warm);
+  border-bottom:1px solid var(--rule);
+}
+.issue-header-inner{
+  max-width:960px;margin:0 auto;
+  padding:14px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.issue-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim);font-weight:500;
+}
+.issue-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.issue-label::before{
+  content:'';display:block;
+  width:6px;height:6px;background:var(--red);border-radius:50%;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
+.hero{
+  max-width:960px;margin:0 auto;
+  padding:60px 40px 0;
+}
+.hero-top{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:60px;
+  padding-bottom:36px;
+  border-bottom:2px solid var(--ink);
+}
+.hero-kicker{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--red);font-weight:600;
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-kicker::before{
+  content:'';display:block;width:36px;height:1.5px;background:var(--red);
+}
+.hero-hed{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(36px,5.8vw,62px);
+  font-weight:700;line-height:1.06;
+  letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:24px;
+}
+.hero-hed em{font-style:italic;color:var(--red);}
+.hero-deck{
+  font-size:18px;line-height:1.62;
+  color:var(--mid);font-weight:300;
+  max-width:520px;
+  border-left:3px solid var(--red);
+  padding-left:18px;
+}
+.hero-right{padding-top:4px;}
+.byline-block{
+  padding-bottom:20px;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:20px;
+}
+.byline-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:14px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:2px;
+}
+.byline-meta{
+  font-size:12px;color:var(--dim);
+  font-family:'Barlow',sans-serif;
+}
+.byline-links{
+  display:flex;gap:12px;margin-top:6px;
+}
+.byline-links a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);
+  text-decoration:none;font-weight:500;
+}
+.byline-links a:hover{text-decoration:underline;}
+
+.hero-stats{}
+.h-stat{margin-bottom:16px;}
+.h-stat-n{
+  font-family:'Libre Baskerville',serif;
+  font-size:38px;font-weight:700;
+  color:var(--ink);line-height:1;
+  letter-spacing:-.03em;
+}
+.h-stat-n sup{font-size:18px;color:var(--red);vertical-align:super;}
+.h-stat-l{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim);
+  font-weight:500;margin-top:4px;
+}
+.h-rule{height:1px;background:var(--rule);margin:16px 0;}
+.body-grid{
+  max-width:960px;margin:0 auto;
+  padding:48px 40px 0;
+  display:grid;
+  grid-template-columns:1fr 272px;
+  gap:56px;
+  align-items:start;
+}
+.main-col{}
+.side-col{position:sticky;top:32px;}
+
+p{font-size:15.5px;line-height:1.8;color:var(--mid);margin-bottom:20px;}
+p strong{font-weight:500;color:var(--ink);}
+p em{font-style:italic;color:var(--ink);}
+
+.drop::first-letter{
+  font-family:'Libre Baskerville',serif;
+  font-size:82px;font-weight:700;
+  float:left;line-height:.82;
+  margin:6px 14px 0 0;
+  color:var(--red);
+}
+
+h2{
+  font-family:'Libre Baskerville',serif;
+  font-size:28px;font-weight:700;
+  color:var(--ink);
+  margin:48px 0 18px;
+  letter-spacing:-.01em;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+}
+h2::before{
+  content:'';
+  position:absolute;bottom:-1px;left:0;
+  width:48px;height:2px;
+  background:var(--red);
+}
+h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);margin:28px 0 10px;
+}
+.pull{
+  font-family:'Libre Baskerville',serif;
+  font-size:23px;font-style:italic;font-weight:400;
+  line-height:1.48;color:var(--ink);
+  border-top:2.5px solid var(--red);
+  border-bottom:1px solid var(--rule);
+  padding:22px 0;margin:36px 0;
+  position:relative;
+}
+.pull::before{
+  content:'\201C';
+  font-size:100px;line-height:1;
+  color:var(--red);opacity:.12;
+  position:absolute;top:-18px;left:-8px;
+  font-family:'Libre Baskerville',serif;
+}
+
+.timeline{
+  background:var(--night);
+  border:1px solid #1e1e26;
+  padding:28px 30px;
+  margin:28px 0;
+  position:relative;
+}
+.timeline-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.24em;
+  text-transform:uppercase;color:#cc4030;
+  font-weight:600;margin-bottom:24px;
+  padding-bottom:12px;border-bottom:1px solid #1e1e26;
+}
+.tl-item{
+  display:grid;
+  grid-template-columns:72px 18px 1fr;
+  gap:0 16px;
+  margin-bottom:20px;
+  align-items:start;
+}
+.tl-item:last-child{margin-bottom:0;}
+.tl-date{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.1em;
+  color:#4a5060;font-weight:500;
+  padding-top:3px;text-align:right;
+}
+.tl-dot-col{
+  display:flex;flex-direction:column;align-items:center;
+}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--red);flex-shrink:0;
+  margin-top:4px;
+  box-shadow:0 0 8px rgba(184,36,28,.5);
+}
+.tl-line{
+  width:1px;flex:1;background:#1e1e26;
+  margin-top:4px;min-height:24px;
+}
+.tl-item:last-child .tl-line{display:none;}
+.tl-text{font-size:13px;color:var(--mono-tx);line-height:1.6;}
+.tl-text strong{color:#e8e0d0;font-weight:500;}
+
+.gap-visual{
+  background:var(--night);
+  border:1px solid #1e1e26;
+  margin:28px 0;
+  overflow:hidden;
+}
+.gap-bar{
+  background:var(--night2);
+  padding:10px 20px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.14em;color:#4a5060;
+  border-bottom:1px solid #1e1e26;
+  font-weight:500;text-transform:uppercase;
+}
+.gap-svg{padding:24px 20px;}
+
+.callout{
+  border:1px solid var(--rule);
+  border-left:4px solid var(--red);
+  background:var(--warm);
+  padding:18px 22px;margin:28px 0;
+}
+.callout-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--red);
+  font-weight:600;margin-bottom:8px;
+}
+.callout p{font-size:14px;margin:0;}
+
+.risk-matrix{
+  background:var(--night);
+  border:1px solid #1e1e26;
+  margin:28px 0;overflow:hidden;
+}
+.risk-bar{
+  background:var(--night2);
+  padding:10px 20px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.14em;
+  color:#4a5060;font-weight:500;text-transform:uppercase;
+  border-bottom:1px solid #1e1e26;
+}
+.risk-items{padding:20px;}
+.risk-row{
+  display:grid;
+  grid-template-columns:160px 1fr 88px;
+  gap:16px;align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #1e1e26;
+}
+.risk-row:last-child{border-bottom:none;}
+.risk-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;color:var(--mono-tx);
+  font-weight:500;letter-spacing:.04em;
+}
+.risk-bar-wrap{
+  height:6px;background:#1e1e26;
+  border-radius:0;position:relative;overflow:hidden;
+}
+.risk-fill{
+  position:absolute;inset-y:0;left:0;
+  background:var(--red);
+  transition:width .8s ease;
+}
+.risk-fill.amber{background:#c49040;}
+.risk-fill.green{background:#2e7d52;}
+.risk-level{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.12em;
+  font-weight:600;text-align:right;
+  text-transform:uppercase;
+}
+.risk-level.high{color:var(--red);}
+.risk-level.med{color:#c49040;}
+.risk-level.low{color:#2e7d52;}
+
+.questions{
+  background:var(--warm);
+  border:1px solid var(--rule);
+  border-top:3px solid var(--ink);
+  padding:28px;margin:28px 0;
+}
+.q-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:20px;font-weight:700;
+  color:var(--ink);margin-bottom:20px;
+}
+.q-item{
+  display:flex;gap:16px;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  align-items:flex-start;
+}
+.q-item:last-child{border-bottom:none;padding-bottom:0;}
+.q-num{
+  font-family:'Libre Baskerville',serif;
+  font-size:22px;font-weight:700;
+  color:var(--red);line-height:1.2;flex-shrink:0;
+  min-width:22px;
+}
+.q-text{
+  font-size:14px;color:var(--mid);line-height:1.65;
+}
+.q-text strong{color:var(--ink);font-weight:500;}
+
+.impl-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;margin:28px 0;
+  border:2px solid var(--ink);
+}
+.impl-card{
+  background:var(--warm);
+  padding:20px;
+}
+.impl-card:nth-child(odd){background:var(--page);}
+.impl-role{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dim);font-weight:600;margin-bottom:8px;
+}
+.impl-headline{
+  font-family:'Libre Baskerville',serif;
+  font-size:16px;font-weight:700;
+  color:var(--ink);margin-bottom:8px;line-height:1.25;
+}
+.impl-body{font-size:13px;color:var(--mid);margin:0;line-height:1.6;}
+
+.widget{
+  background:var(--warm);
+  border:1px solid var(--rule);
+  padding:18px;margin-bottom:20px;
+}
+.widget-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:600;
+  margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid var(--rule);
+}
+.widget p{font-size:12.5px;margin-bottom:8px;color:var(--mid);}
+.widget p:last-child{margin-bottom:0;}
+.widget ul{list-style:none;}
+.widget li{
+  font-size:12.5px;color:var(--mid);
+  padding:6px 0;border-bottom:1px solid var(--rule);
+  display:flex;gap:8px;align-items:flex-start;
+  line-height:1.5;
+}
+.widget li:last-child{border-bottom:none;}
+.widget li::before{content:'→';color:var(--red);flex-shrink:0;}
+
+.big-stat-widget{
+  background:var(--ink);
+  padding:20px;margin-bottom:20px;
+  border:none;
+}
+.bsw-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:#4a4850;font-weight:600;margin-bottom:10px;
+}
+.bsw-n{
+  font-family:'Libre Baskerville',serif;
+  font-size:52px;font-weight:700;color:#f2ede4;
+  line-height:1;letter-spacing:-.04em;margin-bottom:6px;
+}
+.bsw-n span{font-size:26px;color:var(--red);}
+.bsw-desc{font-size:12px;color:#5a5860;line-height:1.6;}
+.bsw-desc strong{color:#8a8890;}
+
+.finra-box{
+  background:var(--night);
+  border:1px solid #1e1e26;
+  border-top:2px solid var(--gold-lt);
+  padding:18px;margin-bottom:20px;
+}
+.finra-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-lt);font-weight:600;margin-bottom:10px;
+}
+.finra-rule{
+  font-size:12.5px;color:var(--mono-tx);
+  line-height:1.6;margin-bottom:8px;
+  padding-left:12px;border-left:2px solid #2e2e38;
+}
+.finra-rule:last-child{margin-bottom:0;}
+
+.s-rule{
+  max-width:960px;margin:44px auto;
+  padding:0 40px;
+  display:flex;align-items:center;gap:16px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--rule);font-weight:500;
+}
+.s-rule::before,.s-rule::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+.takeaway{
+  background:var(--ink);
+  margin:0 0 0;
+}
+.takeaway-inner{
+  max-width:960px;margin:0 auto;
+  padding:40px 40px;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:40px;align-items:center;
+}
+.takeaway-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:600;margin-bottom:10px;
+}
+.takeaway-text{
+  font-family:'Libre Baskerville',serif;
+  font-size:22px;font-weight:400;font-style:italic;
+  color:#f2ede4;line-height:1.48;
+}
+.watch-list{}
+.watch-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:#4a4850;font-weight:600;margin-bottom:10px;
+}
+.watch-item{
+  display:flex;gap:10px;
+  font-size:13px;color:#6a6870;
+  padding:7px 0;border-bottom:1px solid #1e1e26;
+  line-height:1.5;align-items:flex-start;
+}
+.watch-item:last-child{border-bottom:none;}
+.watch-item::before{content:'→';color:var(--red);flex-shrink:0;}
+
+.footer{
+  background:var(--warm);
+  border-top:1px solid var(--rule);
+}
+.footer-inner{
+  max-width:960px;margin:0 auto;
+  padding:36px 40px;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+}
+.footer-brand{
+  font-family:'Libre Baskerville',serif;
+  font-size:28px;font-weight:700;color:var(--ink);
+  letter-spacing:-.02em;margin-bottom:10px;
+}
+.footer-col-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);font-weight:600;margin-bottom:10px;
+}
+.footer p,.footer li{font-size:12px;color:var(--dim);line-height:1.65;margin-bottom:6px;}
+.footer ul{list-style:none;}
+.footer a{color:var(--gold);text-decoration:none;font-size:12px;}
+.footer a:hover{text-decoration:underline;}
+.footer-base{
+  border-top:1px solid var(--rule);
+  max-width:960px;margin:0 auto;
+  padding:14px 40px;
+  display:flex;justify-content:space-between;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.12em;color:var(--rule);
+  text-transform:uppercase;
+}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+.fade.in{opacity:1;transform:none;}
+
+@media(max-width:700px){
+  .hero-top{grid-template-columns:1fr;}
+  .body-grid{grid-template-columns:1fr;}
+  .side-col{position:static;}
+  .impl-grid{grid-template-columns:1fr;}
+  .takeaway-inner{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  .mast-bar{flex-direction:column;gap:8px;text-align:center;}
+  .risk-row{grid-template-columns:120px 1fr 72px;}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-wrap">
+    <div class="mast-bar">
+      <div class="mast-bar-left">Issue No. 41 &nbsp;·&nbsp; April 6, 2026 &nbsp;·&nbsp; Weekly</div>
+      <div class="mast-pill">Analysis</div>
+      <div class="mast-bar-right">For Investment Professionals</div>
+    </div>
+    <div class="wordmark">The Signal</div>
+    <div class="wordmark-sub" style="padding-bottom:24px;">Intelligence · Not Just Information</div>
+  </div>
+</header>
+
+<div class="ticker-strip">
+  <div class="ticker-inner">
+    Goldman Sachs deploys Claude agents for trade accounting &nbsp;<span class="tick-sep">·</span>&nbsp;
+    FINRA 2026 report: first standalone section on agentic AI risks &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Agents manage operations on $2.5T assets under supervision at GS &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Lloyds IT glitch exposes 447,936 customers — automation risks come into focus &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Treasury AI Innovation Series launched April 1 &nbsp;<span class="tick-sep">·</span>&nbsp;
+    FINRA: "Excessive agent autonomy" named top 2026 governance risk &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Goldman deploys Claude agents for trade accounting &nbsp;<span class="tick-sep">·</span>&nbsp;
+    FINRA 2026 report: first standalone section on agentic AI risks &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Agents manage operations on $2.5T assets under supervision at GS &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Lloyds IT glitch exposes 447,936 customers — automation risks come into focus &nbsp;<span class="tick-sep">·</span>&nbsp;
+    Treasury AI Innovation Series launched April 1 &nbsp;<span class="tick-sep">·</span>&nbsp;
+    FINRA: "Excessive agent autonomy" named top 2026 governance risk &nbsp;<span class="tick-sep">·</span>&nbsp;
+  </div>
+</div>
+
+<div class="issue-header">
+  <div class="issue-header-inner">
+    <span class="issue-tag">This Week's Feature &nbsp;·&nbsp; Agentic Finance</span>
+    <span class="issue-label">Breaking Now</span>
+  </div>
+</div>
+
+<div class="hero fade">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="hero-kicker">Cover Story &nbsp;·&nbsp; Macro Shift</div>
+      <h1 class="hero-hed">
+        The Agentic<br/>
+        Takeover:<br/>
+        <em>Who's Accountable<br/>When AI Settles<br/>Your Trades?</em>
+      </h1>
+      <p class="hero-deck">
+        Goldman Sachs handed autonomous AI agents the keys to its trade accounting desk. FINRA just published its first-ever rules on agentic AI. And a software glitch at Lloyds last month exposed half a million customers' data in four hours. Something fundamental is shifting — and the accountability gap is widening faster than the governance frameworks meant to close it.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="byline-block">
+        <div class="byline-name">By Tarun</div>
+        <div class="byline-meta">CS background · Finance obsession · 9 min read</div>
+        <div class="byline-links">
+          <a href="https://github.com/royalkingtarun2007-commits" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/tarun-nani/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">$2.5<sup>T</sup></div>
+        <div class="h-stat-l">Assets under GS agent supervision</div>
+      </div>
+      <div class="h-rule"></div>
+      <div class="h-stat">
+        <div class="h-stat-n">30<sup>%</sup></div>
+        <div class="h-stat-l">Faster onboarding in Goldman tests</div>
+      </div>
+      <div class="h-rule"></div>
+      <div class="h-stat">
+        <div class="h-stat-n">447<sup>K</sup></div>
+        <div class="h-stat-l">Customers exposed by Lloyds glitch</div>
+      </div>
+      <div class="h-rule"></div>
+      <div class="h-stat">
+        <div class="h-stat-n">4<sup>hrs</sup></div>
+        <div class="h-stat-l">Time between Lloyds update &amp; fix</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body-grid">
+<main class="main-col">
+
+<p class="drop fade">
+  On February 6, 2026, Goldman Sachs CIO Marco Argenti walked into a CNBC studio and said something that should have landed louder than it did. For the past six months, Anthropic engineers had been living inside Goldman, co-building autonomous AI agents capable of processing trades, reconciling transactions, and onboarding clients — without a human touching each step. The agents were going into production. <strong>Soon.</strong>
+</p>
+
+<p class="fade">
+  Finance has spent years talking about AI. Tools that assist. Models that suggest. Copilots that help analysts do their jobs faster. This was different. This was AI with transactional authority — systems that don't just advise, but <em>act</em>. Systems that reach into a $2.5 trillion book of assets under supervision and make decisions that move money.
+</p>
+
+<p class="fade">
+  The phrase Argenti used — "digital co-worker" — was chosen carefully. It is reassuring language. It implies collaboration, not replacement. But if you parse it mechanically, a digital co-worker is a colleague who never sleeps, never asks for a raise, and can process ten thousand settlement exceptions before your coffee cools. And unlike a human co-worker, when this one makes a mistake, it is extremely unclear who answers for it.
+</p>
+
+<div class="pull fade">
+  Finance has spent years talking about AI that assists. Goldman just deployed AI that <em>acts</em>. The distinction is not semantic — it is the whole question.
+</div>
+
+<h2 class="fade">What Goldman Actually Built</h2>
+
+<p class="fade">
+  The deployment is not a chatbot. It is not a search tool. What Goldman and Anthropic co-built over six months is a set of autonomous agents designed to handle two specific workflows that have resisted automation for decades: <strong>trade and transaction accounting</strong>, and <strong>client due diligence and onboarding</strong> (KYC/AML).
+</p>
+
+<p class="fade">
+  Both were chosen deliberately. Argenti explained the selection logic in terms that any engineer would recognize: they are high-volume, rule-bound, and — crucially — <em>deterministically verifiable</em>. When a Claude agent extracts a settlement amount from a trade record, you can programmatically check it against the ledger. Right or wrong, the answer is knowable. That is a very different risk profile from, say, asking an AI to decide whether a loan should be approved.
+</p>
+
+<p class="fade">
+  The technical architecture reflects this caution. Goldman pairs Claude agents with rules systems and human oversight to resolve exception-heavy workflows. Chain-of-verification prompting has the model cross-check its own outputs before surfacing them. Retrieval-augmented generation grounds the model in Goldman's actual data rather than general training knowledge. The result is a system that is less "AI making judgment calls" and more "AI doing high-speed verification against a rulebook that humans wrote."
+</p>
+
+<p class="fade">
+  The early results are concrete. Client onboarding time was cut by 30% in tests, and developer productivity improved more than 20% across Goldman's 12,000-strong developer population. Those are not speculative projections — they are measured outcomes from a six-month embedded partnership.
+</p>
+
+<div class="timeline fade">
+  <div class="timeline-title">// GOLDMAN × ANTHROPIC · DEPLOYMENT TIMELINE</div>
+  <div class="tl-item">
+    <div class="tl-date">Jul 2025</div>
+    <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-text"><strong>Pilot: Devin (autonomous coder)</strong> — Goldman tests an AI coding agent across its 12,000-strong engineering org. First taste of agentic workflows.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Aug 2025</div>
+    <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-text"><strong>Expansion discovery</strong> — Claude's reasoning capabilities surprise executives. "Is it about coding being special, or about reasoning through complex problems step-by-step?" — CIO Argenti.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Aug–Jan</div>
+    <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-text"><strong>Six-month co-build</strong> — Anthropic engineers embedded inside Goldman. Domain experts observed, bottlenecks mapped, agents designed for trade accounting and KYC/AML.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Feb 6, 2026</div>
+    <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-text"><strong>Public announcement</strong> — CIO Argenti tells CNBC: agents entering production "soon." Manages $2.5T in assets under supervision. 30% faster onboarding in tests.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Q1 2026</div>
+    <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-text"><strong>Enterprise-wide deployment begins</strong> — Agent workflows scaling across back-office functions. CEO David Solomon frames it as central to a multi-year headcount efficiency strategy.</div>
+  </div>
+</div>
+
+<p class="fade">
+  What Goldman is building is not the end state — it is the proof of concept that every other major institution is watching. Citi has simultaneously rolled out Stylus Workspaces, a platform designed to streamline complex multi-step tasks across applications and data sources, consolidating manual workflows that previously required multiple tools and human handoffs. JPMorgan has given all employees an LLM suite for information retrieval and analysis. The race to the agentic back office is already underway. Goldman simply announced the fastest lap time.
+</p>
+
+<h2 class="fade">The Accountability Gap</h2>
+
+<p class="fade">
+  Here is the question no press release answers: when an autonomous agent makes a mistake that costs a client money, or flags a settlement incorrectly, or misclassifies a transaction in a way that creates a compliance breach — who is responsible?
+</p>
+
+<p class="fade">
+  This is not a hypothetical. On March 12, 2026, a software update at Lloyds Banking Group introduced a defect in the API layer of its mobile banking apps. Between 03:28 and 08:08, a programming error caused transaction data to display across different accounts when multiple users accessed the app simultaneously. Nearly half a million customers saw each other's transactions. National Insurance numbers were exposed. The fix took four hours. The regulatory and reputational consequences will take considerably longer.
+</p>
+
+<p class="fade">
+  Lloyds' glitch was not an AI failure — it was a classic software deployment error. But it illustrates the stakes with uncomfortable precision: <strong>in a system that has automated its most sensitive data-handling processes, a single bad update propagates instantly, at scale, before any human catches it.</strong> The Lloyds incident was contained because no autonomous agent had transactional authority. The data was exposed, but no money moved. Now extend the thought experiment: what happens when the automated system can act, not just display?
+</p>
+
+<div class="gap-visual fade">
+  <div class="gap-bar">The Accountability Gap — From Assistance to Autonomy</div>
+  <div class="gap-svg">
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" font-family="Barlow Condensed, sans-serif">
+      <rect x="40" y="88" width="680" height="6" rx="3" fill="#1e1e26"/>
+      <rect x="40" y="88" width="680" height="6" rx="3" fill="url(#grad)"/>
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#2e7d52"/>
+          <stop offset="50%" style="stop-color:#c49040"/>
+          <stop offset="100%" style="stop-color:#b8241c"/>
+        </linearGradient>
+      </defs>
+      <circle cx="80" cy="91" r="8" fill="#2e7d52"/>
+      <text x="80" y="130" text-anchor="middle" fill="#2e7d52" font-size="9" letter-spacing="1" font-weight="600">ASSIST</text>
+      <text x="80" y="143" text-anchor="middle" fill="#4a5060" font-size="8">Copilots, search</text>
+      <text x="80" y="154" text-anchor="middle" fill="#4a5060" font-size="8">Human decides</text>
+      <circle cx="270" cy="91" r="8" fill="#6aaa6a"/>
+      <text x="270" y="130" text-anchor="middle" fill="#6aaa6a" font-size="9" letter-spacing="1" font-weight="600">AUGMENT</text>
+      <text x="270" y="143" text-anchor="middle" fill="#4a5060" font-size="8">AI drafts, flags</text>
+      <text x="270" y="154" text-anchor="middle" fill="#4a5060" font-size="8">Human reviews</text>
+      <circle cx="460" cy="91" r="8" fill="#c49040"/>
+      <text x="460" y="130" text-anchor="middle" fill="#c49040" font-size="9" letter-spacing="1" font-weight="600">AUTOMATE</text>
+      <text x="460" y="143" text-anchor="middle" fill="#4a5060" font-size="8">AI executes</text>
+      <text x="460" y="154" text-anchor="middle" fill="#4a5060" font-size="8">Human monitors</text>
+      <circle cx="680" cy="91" r="10" fill="#b8241c"/>
+      <text x="680" y="130" text-anchor="middle" fill="#b8241c" font-size="9" letter-spacing="1" font-weight="600">AGENTIC</text>
+      <text x="680" y="143" text-anchor="middle" fill="#4a5060" font-size="8">AI acts, decides</text>
+      <text x="680" y="154" text-anchor="middle" fill="#4a5060" font-size="8">Who's responsible?</text>
+      <line x1="560" y1="60" x2="560" y2="84" stroke="#b8241c" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="560" y="54" text-anchor="middle" fill="#b8241c" font-size="9" font-weight="600" letter-spacing=".05em">Goldman 2026</text>
+      <circle cx="560" cy="91" r="5" fill="#b8241c" opacity=".6"/>
+      <text x="40" y="24" fill="#4a5060" font-size="10" letter-spacing="1.5" font-weight="500">HUMAN AUTHORITY</text>
+      <text x="680" y="24" text-anchor="end" fill="#b8241c" font-size="10" letter-spacing="1.5" font-weight="500">AGENT AUTHORITY</text>
+      <line x1="40" y1="30" x2="680" y2="30" stroke="#2a2a32" stroke-width="1"/>
+      <polygon points="680,26 692,30 680,34" fill="#2a2a32"/>
+    </svg>
+  </div>
+</div>
+
+<p class="fade">
+  FINRA's 2026 Annual Regulatory Oversight Report — the regulator's most important annual document — dedicated a standalone section to agentic AI for the first time in its history. The language was specific and, for FINRA, unusually urgent. The report highlighted several risks: agents acting autonomously without human validation; agents that may act beyond the user's actual or intended scope and authority; and complicated, multi-step agent reasoning tasks that can make outcomes difficult to trace or explain, complicating auditability.
+</p>
+
+<p class="fade">
+  The regulator's position is clear in theory: FINRA's rules continue to apply when firms use AI, just as they apply when firms use any other technology. If an AI provides incorrect financial data to a client, you are held to the same standard as if a human employee made the error. In practice, this creates a peculiar accountability structure. A human analyst who makes a bad call carries consequences — career, reputation, potential censure. An AI agent that makes a bad call routes the consequences back to the institution, the model vendor, and eventually to whoever signed the deployment approval. The chain is longer. The diffusion is greater. The urgency to catch errors is, by that logic, somewhat diluted.
+</p>
+
+<div class="callout fade">
+  <div class="callout-label">The Verifiability Advantage</div>
+  <p>Goldman's CIO made a point worth holding onto. In trade accounting, outputs are often <em>deterministically verifiable</em> — you can check the agent's settlement figure against the ledger programmatically. This is what makes trade accounting a safer first deployment than, say, credit underwriting or investment recommendations, where correctness is subjective and the feedback loop is slow. The verifiability of a task is probably the single most important variable in deciding whether to hand it to an agent.</p>
+</div>
+
+<h2 class="fade">Risk by Role: A Framework</h2>
+
+<p class="fade">
+  Not all agentic deployments carry the same risk. The key variable is the combination of task verifiability (can you programmatically check the output?) and consequence magnitude (what happens when it's wrong?). Goldman's trade accounting deployment sits in the high-verifiability, high-consequence quadrant — which is why the architecture wraps every agent action in deterministic validation layers.
+</p>
+
+<div class="risk-matrix fade">
+  <div class="risk-bar">Agentic AI Deployment Risk by Finance Workflow</div>
+  <div class="risk-items">
+    <div class="risk-row">
+      <div class="risk-name">Trade Reconciliation</div>
+      <div class="risk-bar-wrap"><div class="risk-fill green" style="width:28%"></div></div>
+      <div class="risk-level low">Managed</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-name">Client Onboarding / KYC</div>
+      <div class="risk-bar-wrap"><div class="risk-fill amber" style="width:48%"></div></div>
+      <div class="risk-level med">Moderate</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-name">AML Screening</div>
+      <div class="risk-bar-wrap"><div class="risk-fill amber" style="width:55%"></div></div>
+      <div class="risk-level med">Moderate</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-name">Compliance Monitoring</div>
+      <div class="risk-bar-wrap"><div class="risk-fill" style="width:66%"></div></div>
+      <div class="risk-level high">Elevated</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-name">Credit Underwriting</div>
+      <div class="risk-bar-wrap"><div class="risk-fill" style="width:76%"></div></div>
+      <div class="risk-level high">High</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-name">Portfolio / Execution</div>
+      <div class="risk-bar-wrap"><div class="risk-fill" style="width:92%"></div></div>
+      <div class="risk-level high">Critical</div>
+    </div>
+  </div>
+</div>
+
+<p class="fade" style="font-size:12.5px;color:var(--dim);font-style:italic;">Risk assessed across two axes: verifiability of output (can errors be caught programmatically?) and consequence magnitude (what is the blast radius of a failure?). Goldman's initial deployment correctly targets the lowest-risk quadrant.</p>
+
+<h2 class="fade">What This Means for Your Role</h2>
+
+<div class="impl-grid fade">
+  <div class="impl-card">
+    <div class="impl-role">Equity Analysts</div>
+    <div class="impl-headline">Your research workflow is next. Welcome it.</div>
+    <p class="impl-body">AlphaSense's custom AI agents, launched last week, let you automate earnings analysis and competitive monitoring. The analysts who adopt these tools earliest will compress hours of prep into minutes — and spend the time saved forming the views that machines can't.</p>
+  </div>
+  <div class="impl-card">
+    <div class="impl-role">Portfolio Managers</div>
+    <div class="impl-headline">Ask harder questions about your back office.</div>
+    <p class="impl-body">If your execution and settlement infrastructure relies on vendors now racing to deploy agents, you need clarity on their governance frameworks. When did they last audit their model versions? What are the human-in-the-loop checkpoints? "AI handled it" is not an acceptable answer to a counterparty dispute.</p>
+  </div>
+  <div class="impl-card">
+    <div class="impl-role">Risk &amp; Compliance</div>
+    <div class="impl-headline">Your frameworks were written for humans.</div>
+    <p class="impl-body">FINRA's 2026 report is a starting point, not a destination. Model risk frameworks designed for static, rules-based systems need rearchitecting for agents that chain multi-step reasoning. Log every action. Version every prompt. Maintain kill switches. The regulator is watching.</p>
+  </div>
+  <div class="impl-card">
+    <div class="impl-role">Operations / Back Office</div>
+    <div class="impl-headline">The Lloyds lesson: automation amplifies fragility.</div>
+    <p class="impl-body">A four-hour glitch at Lloyds exposed half a million customers not because of malice or a cyberattack — but because a software update propagated faster than any human could catch it. Automated systems move at machine speed. So do their failures. Resilience architecture matters more, not less, as autonomy increases.</p>
+  </div>
+</div>
+
+<h2 class="fade">Five Questions Nobody is Asking Loudly Enough</h2>
+
+<div class="questions fade">
+  <div class="q-title">What Investors Should Be Pressing For</div>
+  <div class="q-item">
+    <div class="q-num">1</div>
+    <div class="q-text"><strong>Who owns the error?</strong> When an AI agent misclassifies a transaction that triggers a downstream compliance breach, the legal and financial responsibility needs to be mapped before deployment — not litigated after. Vendor contracts with AI companies typically disclaim liability. Someone is still holding the bag.</div>
+  </div>
+  <div class="q-item">
+    <div class="q-num">2</div>
+    <div class="q-text"><strong>What is the model's version history?</strong> FINRA explicitly requires firms to track which model version was used and when. An agent running on an unpinned, auto-updated model can change behavior between Monday and Wednesday without any human noticing. Version control is not a best practice — it is a regulatory expectation.</div>
+  </div>
+  <div class="q-item">
+    <div class="q-num">3</div>
+    <div class="q-text"><strong>Where are the kill switches?</strong> Goldman's CIO described agents that understand instructions and "go on their own." Every autonomous system needs a well-tested, reliably reachable stop mechanism. The Lloyds incident was resolved because engineers could roll back the update. What is the equivalent for a multi-step agentic workflow mid-execution?</div>
+  </div>
+  <div class="q-item">
+    <div class="q-num">4</div>
+    <div class="q-text"><strong>What happens to the third-party vendors?</strong> Argenti's most underreported comment was about vendor concentration. Goldman, he said, could "cut out third-party providers" as AI matures. If the largest banks are building internal agentic layers instead of buying specialized software, the downstream impact on enterprise SaaS is structural — not cyclical.</div>
+  </div>
+  <div class="q-item">
+    <div class="q-num">5</div>
+    <div class="q-text"><strong>Is "injecting capacity" the whole story?</strong> Goldman's official position is that agents inject capacity, not eliminate headcount. CEO Solomon has separately named headcount constraint as a multi-year efficiency target. These two statements are not contradictory — they are sequential. Capacity injection now. Headcount optimization later. The honest question is: what is the timeline?</div>
+  </div>
+</div>
+
+<h2 class="fade">The Honest Takeaway</h2>
+
+<p class="fade">
+  The framing of AI agents as "digital co-workers" is both accurate and misleading. Accurate because, at Goldman, the agents are genuinely collaborating with humans — deterministic validation layers, human review of exceptions, chain-of-verification prompting. Misleading because the co-worker framing implies a parity of accountability that does not exist.
+</p>
+
+<p class="fade">
+  A human accountant who reconciles a trade incorrectly can be questioned, trained, or removed. An AI agent that reconciles a trade incorrectly can be patched, fine-tuned, or rolled back — but the accountability for deploying it, governing it, and auditing it lives entirely with the humans who commissioned it. That is a governance structure that most institutions have not yet fully built.
+</p>
+
+<p class="fade">
+  What Goldman has done is not reckless — it is, in fact, a model of how to approach agentic deployment thoughtfully: start with verifiable tasks, build deterministic checks, maintain human oversight on exceptions, and move incrementally. The risk is not Goldman. The risk is the institutions that watch Goldman announce 30% efficiency gains and deploy agents in less verifiable, higher-consequence workflows before the governance infrastructure catches up.
+</p>
+
+<div class="pull fade">
+  The question is no longer whether AI will gain transactional authority in finance. It already has. The question is whether the governance frameworks keeping pace with the deployment timelines are sufficient — and right now, the evidence suggests they are not.
+</div>
+
+</main>
+
+<aside class="side-col fade">
+
+  <div class="big-stat-widget">
+    <div class="bsw-label">Goldman's Agent Book</div>
+    <div class="bsw-n">$2.5<span>T</span></div>
+    <div class="bsw-desc">Assets under supervision managed by Claude-powered agents. <strong>Trade accounting and KYC/AML</strong> are the first two live workflows.</div>
+  </div>
+
+  <div class="finra-box">
+    <div class="finra-label">FINRA 2026 — Agent Rules</div>
+    <div class="finra-rule">Track and log all AI agent actions and decisions</div>
+    <div class="finra-rule">Define human-in-the-loop oversight checkpoints</div>
+    <div class="finra-rule">Monitor AI agent system access and data handling</div>
+    <div class="finra-rule">Implement guardrails to constrain agent behaviors</div>
+    <div class="finra-rule">Version-control model deployments; log which model ran when</div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-title">This Week's Context</div>
+    <div class="news-item" style="padding:8px 0;border-bottom:1px solid var(--rule);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:4px;font-weight:600;">FEB 6, 2026</div>
+      <p>Goldman Sachs announces Claude-powered trade accounting and KYC agents entering production. Six months of embedded Anthropic engineers. $2.5T assets under supervision.</p>
+    </div>
+    <div class="news-item" style="padding:8px 0;border-bottom:1px solid var(--rule);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:4px;font-weight:600;">MAR 12, 2026</div>
+      <p>Lloyds Banking Group software glitch exposes transaction data of 447,936 customers. Four hours to fix. FCA, PRA, and ICO all notified. Parliament requests follow-up reports.</p>
+    </div>
+    <div class="news-item" style="padding:8px 0;border-bottom:1px solid var(--rule);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:4px;font-weight:600;">MAR 25, 2026</div>
+      <p>AlphaSense launches custom AI agents for finance research — users build repeatable, schedulable workflows in plain English.</p>
+    </div>
+    <div class="news-item" style="padding:8px 0;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:4px;font-weight:600;">APR 1, 2026</div>
+      <p>U.S. Treasury launches AI Innovation Series — public-private initiative to govern AI across fraud detection, credit, and operational risk in financial markets.</p>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-title">Goldman vs. The Field</div>
+    <ul>
+      <li>Goldman: Claude agents for trade accounting &amp; KYC/AML. Production-ready Q1 2026.</li>
+      <li>Citi: Stylus Workspaces — internal agentic layer across multi-step tasks.</li>
+      <li>JPMorgan: LLM suite for all 300K+ employees. Focus on research and information retrieval.</li>
+      <li>DTCC: GenAI Risk Calculator at 97% accuracy, zero hallucinations post-launch.</li>
+    </ul>
+  </div>
+
+  <div class="widget">
+    <div class="widget-title">Sources</div>
+    <ul>
+      <li>CNBC — Marco Argenti interview, Feb 6 2026</li>
+      <li>American Banker — Goldman GS/Anthropic deep dive</li>
+      <li>FINRA 2026 Regulatory Oversight Report</li>
+      <li>Debevoise &amp; Plimpton — FINRA agent risk analysis</li>
+      <li>UK Treasury Committee — Lloyds Banking glitch report</li>
+      <li>FinTech Magazine — Lloyds incident coverage</li>
+    </ul>
+  </div>
+
+</aside>
+</div>
+
+<div class="s-rule fade">◆◆◆</div>
+
+<div class="takeaway">
+  <div class="takeaway-inner">
+    <div>
+      <div class="takeaway-title">Editor's Takeaway · April 6, 2026</div>
+      <div class="takeaway-text">
+        The deployment of autonomous agents in finance is not a future scenario — it is a Q1 2026 production rollout at one of the world's most systematically important banks. The institutions that will navigate this well are the ones that treat governance as a design constraint, not a post-deployment checklist.
+      </div>
+    </div>
+    <div class="watch-list">
+      <div class="watch-title">Watch in Q2 2026</div>
+      <div class="watch-item">Goldman's official go-live announcement and first performance metrics</div>
+      <div class="watch-item">FINRA follow-up guidance on agent-specific audit trail requirements</div>
+      <div class="watch-item">Citi Stylus enterprise rollout scope and timeline</div>
+      <div class="watch-item">UK Treasury Committee's one-month Lloyds follow-up report</div>
+      <div class="watch-item">Whether any firm discloses an agent-caused compliance incident</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">The Signal</div>
+      <p>A weekly newsletter for investment professionals navigating the intersection of AI and markets. Written by Tarun — CS background, finance obsession. Analysis-first, no noise.</p>
+      <p style="margin-top:10px;">
+        <a href="https://github.com/royalkingtarun2007-commits" target="_blank">Github.com</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/tarun-nani" target="_blank">Linkedin</a>
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">In This Issue</div>
+      <ul>
+        <li>Goldman Sachs agentic deployment — full breakdown</li>
+        <li>The accountability gap, mapped</li>
+        <li>FINRA 2026 agent rules, decoded</li>
+        <li>Risk matrix by finance workflow</li>
+        <li>Five questions nobody is asking</li>
+        <li>Implications by role</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Disclosure</div>
+      <p>No commercial relationship with Goldman Sachs, Anthropic, or any entity mentioned. All data sourced from publicly available reporting: CNBC, American Banker, FINRA, UK Treasury Committee, FinTech Magazine.</p>
+      <p style="margin-top:8px;">This is independent analysis. Not investment advice.</p>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>The Signal · Issue 41 · April 6, 2026</span>
+    <span>By Tarun · Independent Analysis</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'), i*40);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.06});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
